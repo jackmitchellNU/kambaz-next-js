@@ -17,6 +17,10 @@ export default function Modules() {
         </li>
         <li className="wd-module">
           <div className="wd-title">Week 2</div>
+          <ul className="wd-content">
+                <li className="wd-content-item">Learning HTML</li>
+                <li className="wd-content-item">Deploying to Vercel</li>
+              </ul>
         </li>
         <li className="wd-module">
           <div className="wd-title">Week 3</div>
