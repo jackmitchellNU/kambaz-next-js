@@ -1,6 +1,5 @@
 import CourseNavigation from "./Navigation";
-export default function CoursesLayout(
-  { children, params }: { children: React.ReactNode; params: { cid: string } }) {
+export default function CoursesLayout({ children, params }: { children: React.ReactNode; params: { cid: string } }) {
  const { cid } = params;
  return (
    <div id="wd-courses">
