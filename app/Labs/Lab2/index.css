@@ -206,3 +206,52 @@ p#wd-id-selector-2 {
 #asd { background-color: red;}
 .zxc { color: blue; color: white;}
 #zxc { background-color: blue;}
+.kambaz-nav {
+  width: 82px;               /* compact column like the screenshot */
+  background: #0b0b0b;       /* deep charcoal */
+  border-right: 1px solid #1f1f1f;
+  padding: 12px 8px;
+  min-height: 100vh;
+}
+
+.kambaz-brand {
+  width: 48px; height: 48px;
+  margin: 0 auto 10px auto;
+  border-radius: 10px;
+  background: #000;
+  color: #e31b23;            /* red N badge feel */
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 22px; line-height: 1;
+  border: 1px solid #222;
+}
+
+.kambaz-link {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 10px 0;
+  color: #cfcfcf !important;
+  background: transparent !important;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.kambaz-link .kambaz-icon {
+  font-size: 18px;
+}
+
+.kambaz-link span {
+  font-size: 12px;
+}
+
+.kambaz-link:hover {
+  color: #fff !important;
+  border-color: #2b2b2b;
+  background: #121212 !important;
+}
+
+.kambaz-link.active {
+  color: #fff !important;
+  background: #e31b23 !important;      /* pill highlight color */
+  border-color: #e31b23 !important;
+}
