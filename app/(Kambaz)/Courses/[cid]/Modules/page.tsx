@@ -24,6 +24,8 @@ export default function Modules() {
         </li>
         <li className="wd-module">
           <div className="wd-title">Week 3</div>
+            <li className="wd-content-item">Exam 1!</li>
+            <li className="wd-content-item">Introduction to final project</li>
         </li>
       </ul>
     </div>
