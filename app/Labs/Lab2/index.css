@@ -201,3 +201,8 @@ p#wd-id-selector-2 {
   width: 220px;
   text-align: center;
 }
+
+.asd { background-color: red; color: white;}
+#asd { background-color: red;}
+.zxc { color: blue; color: white;}
+#zxc { background-color: blue;}

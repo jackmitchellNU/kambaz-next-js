@@ -28,12 +28,12 @@ export default function KambazNavigation() {
      </ListGroupItem>
 
      <ListGroupItem className="border-0 bg-white text-center">
-       <Link href="/Courses" id="wd-dashboard-link" className="text-danger text-decoration-none">
+       <Link href="/Courses" id="wd-courses-link" className="text-danger text-decoration-none">
          <AiOutlineDashboard className="fs-1 text-danger" />
          <br />
          Courses
-       </Link>
-     </ListGroupItem>
+        </Link>
+      </ListGroupItem>
       <ListGroupItem className="border-0 bg-black text-center">
         <Link href="/Calendar" id="wd-calendar-link" className="text-white text-decoration-none">
           <IoCalendarOutline className="fs-1 text-white" />
