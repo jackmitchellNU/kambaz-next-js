@@ -48,13 +48,5 @@ export default function KambazNavigation() {
           Inbox
         </Link>
       </ListGroupItem>
-      <ListGroupItem className="border-0 bg-black text-center">
-        <Link href="/Settings" id="wd-settings-link" className="text-white text-decoration-none">
-          <LiaCogSolid className="fs-1 text-white" />
-          <br />
-          Settings
-        </Link>
-      </ListGroupItem>
-     {/* complete styling the rest of the links */}
    </ListGroup>
 );}
