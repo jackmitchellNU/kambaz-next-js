@@ -11,50 +11,50 @@ export default function KambazNavigation() {
      <ListGroupItem className="bg-black border-0 text-center" as="a"
               target="_blank" href="https://www.northeastern.edu/" id="wd-neu-link">
        <img src="/images/neu.png" width="75px" alt="Northeastern University" />
-     </ListGroupItem><br />
+     </ListGroupItem>
      <ListGroupItem className="border-0 bg-black text-center">
        <Link href="/Account" id="wd-account-link" className="text-white text-decoration-none">
          <FaRegCircleUser className="fs-1 text-white" />
          <br />
          Account
        </Link>
-     </ListGroupItem><br />
+     </ListGroupItem>
      <ListGroupItem className="border-0 bg-white text-center">
        <Link href="/Dashboard" id="wd-dashboard-link" className="text-danger text-decoration-none">
          <AiOutlineDashboard className="fs-1 text-danger" />
          <br />
          Dashboard
        </Link>
-     </ListGroupItem><br />
+     </ListGroupItem>
       <ListGroupItem className="border-0 bg-black text-center">
-        <Link href="/Courses" id="wd-courses-link" className="text-white text-decoration-none">
+        <Link href="/Dashboard" id="wd-dashboard-link" className="text-white text-decoration-none">
 
           <LiaBookSolid className="fs-1 text-white" />
           <br />
           Courses
         </Link>
-      </ListGroupItem><br />
+      </ListGroupItem>
       <ListGroupItem className="border-0 bg-black text-center">
         <Link href="/Calendar" id="wd-calendar-link" className="text-white text-decoration-none">
           <IoCalendarOutline className="fs-1 text-white" />
           <br />
           Calendar
         </Link>
-      </ListGroupItem><br />
+      </ListGroupItem>
       <ListGroupItem className="border-0 bg-black text-center">
         <Link href="/Inbox" id="wd-inbox-link" className="text-white text-decoration-none">
           <FaInbox className="fs-1 text-white" />
           <br />
           Inbox
         </Link>
-      </ListGroupItem><br />
+      </ListGroupItem>
       <ListGroupItem className="border-0 bg-black text-center">
         <Link href="/Settings" id="wd-settings-link" className="text-white text-decoration-none">
           <LiaCogSolid className="fs-1 text-white" />
           <br />
           Settings
         </Link>
-      </ListGroupItem><br />
+      </ListGroupItem>
      {/* complete styling the rest of the links */}
    </ListGroup>
 );}

@@ -1,100 +1,211 @@
 import Link from "next/link";
 import Image from "next/image";
+import Card from "react-bootstrap/esm/Card";
+import CardBody from "react-bootstrap/esm/CardBody";
+import Button from "react-bootstrap/esm/Button";
+import CardText from "react-bootstrap/esm/CardText";
+import CardTitle from "react-bootstrap/esm/CardTitle";
+import CardImg from "react-bootstrap/esm/CardImg";
+import Col from "react-bootstrap/esm/Col";
+import Row from "react-bootstrap/esm/Row";
 export default function Dashboard() {
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
       <h2 id="wd-dashboard-published">Published Courses (12)</h2> <hr />
       <div id="wd-dashboard-courses">
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1234" className="wd-dashboard-course-link">
-            <Image src="/images/react.jpg" width={200} height={150} alt="React JS course" />
-            <div>
-              <h5> CS1234 React JS </h5>
-              <p className="wd-dashboard-course-title">
-                Full Stack software developer
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1235" className="wd-dashboard-course-link">
-            <Image src="/images/diving.jpg" width={200} height={150} alt="Diving course" />
-            <div>
-              <h5> DIV1001 Diving </h5>
-              <p className="wd-dashboard-course-title">
-                Exploring the underwater world
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1236" className="wd-dashboard-course-link">
-            <Image src="/images/bio.jpg" width={200} height={150} alt="Biology course" />
-            <div>
-              <h5> BIO101 Introduction to Biology </h5>
-              <p className="wd-dashboard-course-title">
-                Understanding the basics of biology
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1237" className="wd-dashboard-course-link">
-            <Image src="/images/eece.jpg" width={200} height={150} alt="Electrical Engineering course" />
-            <div>
-              <h5> EECE101 Introduction to Electrical Engineering </h5>
-              <p className="wd-dashboard-course-title">
-                Understanding the basics of electrical engineering
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1238" className="wd-dashboard-course-link">
-            <Image src="/images/japanese.jpg" width={200} height={150} alt="Japanese Literature and Culture course" />
-            <div>
-              <h5> HIST101 Introduction to Japanese Literature and Culture </h5>
-              <p className="wd-dashboard-course-title">
-                Understanding Japanese literature and culture
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1239" className="wd-dashboard-course-link">
-            <Image src="/images/lin.jpg" width={200} height={150} alt="Linear Algebra course" />
-            <div>
-              <h5> MATH2899 Linear Algebra </h5>
-              <p className="wd-dashboard-course-title">
-                Understanding the concepts of linear algebra
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1240" className="wd-dashboard-course-link">
-            <Image src="/images/crim.jpg" width={200} height={150} alt="Race, Crime, and Justice course" />
-            <div>
-              <h5> CRIM3400 Race, crime, and justice</h5>
-              <p className="wd-dashboard-course-title">
-                Understanding the criminal justice system
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-
+        <Row xs={1} md={5} className="g-4">
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1234/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/react.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1234 React JS
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Full Stack software developer
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1235/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/diving.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    DIV1001 Diving
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Exploring the underwater world
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1236/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/bio.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    BIO101 Introduction to Biology
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Understanding the basics of biology
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1237/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/eece.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    EECE101 Introduction to Electrical Engineering
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Understanding the basics of electrical engineering
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1238/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/japanese.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    HIST101 Introduction to Japanese Literature and Culture
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Understanding Japanese literature and culture
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1239/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/lin.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    MATH2899 Linear Algebra
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Understanding the concepts of linear algebra
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1240/Home"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/crim.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CRIM3400 Race, crime, and justice
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Understanding the criminal justice system
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+        </Row>
       </div>
     </div>
-);}
+  );
+}
