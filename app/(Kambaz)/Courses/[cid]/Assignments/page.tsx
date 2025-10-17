@@ -1,3 +1,5 @@
+"use client"
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import AssignmentsControls from "./AssignmentsControls";
@@ -5,17 +7,30 @@ import { BsGripVertical } from "react-icons/bs";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
+import * as db from "../../../Database";
+
+type Assignment = {
+  _id: string;
+  title: string;
+  course: string;
+};
 
 export default function Assignments() {
+  const { cid } = useParams<{ cid: string }>();
+  const assignments = db.assignments as Assignment[];
+
   return (
     <div>
-      <AssignmentsControls /><br /><br /><br /><br />
+      <AssignmentsControls />
+      <br />
+      <br />
+      <br />
+      <br />
       <ListGroup className="rounded-0" id="wd-assignments">
         <ListGroupItem className="wd-assignment-group p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between">
             <div>
-              <BsGripVertical className="me-2 fs-3" /> 
-              ASSIGNMENTS
+              <BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS
             </div>
             <div className="d-flex align-items-center">
               <span className="me-3">40% of Total</span>
@@ -24,36 +39,27 @@ export default function Assignments() {
             </div>
           </div>
           <ListGroup className="wd-assignments rounded-0">
-            <ListGroupItem className="wd-assignment p-3 ps-1">
-              <div className="d-flex align-items-start">
-                <BsGripVertical className="me-2 fs-3" />
-                <div className="flex-grow-1">
-                  <Link href="/Courses/1234/Assignments/A1" className="wd-assignment-link">
-                    A1 - ENV + HTML
-                  </Link>
-                  <br />
-                  <span className="small">
-                    Available from: 2026-05-15 - 2026-06-2 | Due: 2026-06-1
-                  </span>
-                </div>
-                <AssignmentControlButtons />
-              </div>
-            </ListGroupItem>
-            <ListGroupItem className="wd-assignment p-3 ps-1">
-              <div className="d-flex align-items-start">
-                <BsGripVertical className="me-2 fs-3" />
-                <div className="flex-grow-1">
-                  <Link href="/Courses/1234/Assignments/A2" className="wd-assignment-link">
-                    A2 - Vercel and github
-                  </Link>
-                  <br />
-                  <span className="small">
-                    Available from: 2026-06-1 - 2026-06-16 | Due: 2026-06-15
-                  </span>
-                </div>
-                <AssignmentControlButtons />
-              </div>
-            </ListGroupItem>
+            {assignments.filter((a) => a.course === cid).length === 0 && (
+              <ListGroupItem className="p-3 text-muted">No assignments yet.</ListGroupItem>
+            )}
+            {assignments
+              .filter((assignment) => assignment.course === cid)
+              .map((assignment) => (
+                <ListGroupItem key={assignment._id} className="wd-assignment p-3 ps-1">
+                  <div className="d-flex align-items-start">
+                    <BsGripVertical className="me-2 fs-3" />
+                    <div className="flex-grow-1">
+                      <Link
+                        href={`/Courses/${cid}/Assignments/${assignment._id}`}
+                        className="wd-assignment-link"
+                      >
+                        {assignment.title}
+                      </Link>
+                    </div>
+                    <AssignmentControlButtons />
+                  </div>
+                </ListGroupItem>
+              ))}
           </ListGroup>
         </ListGroupItem>
       </ListGroup>

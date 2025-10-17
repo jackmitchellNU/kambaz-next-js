@@ -1,42 +1,42 @@
-import { Table } from "react-bootstrap";
+"use client"
+import { useParams } from "next/navigation";
+import * as db from "../../../../Database";
 import { FaUserCircle } from "react-icons/fa";
+
+type Enrollment = { _id: string; user: string; course: string };
+
 export default function PeopleTable() {
- return (
-  <div id="wd-people-table">
-   <Table striped>
-    <thead>
-     <tr><th>Name</th><th>Login ID</th><th>Section</th><th>Role</th><th>Last Activity</th><th>Total Activity</th></tr>
-    </thead>
-    <tbody>
-     <tr><td className="wd-full-name text-nowrap">
-          <FaUserCircle className="me-2 fs-1 text-secondary" />
-          <span className="wd-first-name">Tony</span>{" "}
-          <span className="wd-last-name">Stark</span></td>
-      <td className="wd-login-id">001234561S</td>
-      <td className="wd-section">S101</td>
-      <td className="wd-role">STUDENT</td>
-      <td className="wd-last-activity">2020-10-01</td>
-      <td className="wd-total-activity">10:21:32</td></tr>
+  const { cid } = useParams<{ cid: string }>();
+  const enrollments = db.users as unknown as Enrollment[];
+  const courseEnrollments = enrollments.filter((e) => e.course === cid);
 
-      <tr><td className="wd-full-name text-nowrap">
-          <FaUserCircle className="me-2 fs-1 text-secondary" />
-          <span className="wd-first-name">Tony</span>{" "}
-          <span className="wd-last-name">Soprano</span></td>
-      <td className="wd-login-id">00111111</td>
-      <td className="wd-section">S102</td>
-      <td className="wd-role">STUDENT</td>
-      <td className="wd-last-activity">2020-10-03</td>
-      <td className="wd-total-activity">10:11:11</td></tr>
-
-      <tr><td className="wd-full-name text-nowrap">
-          <FaUserCircle className="me-2 fs-1 text-secondary" />
-          <span className="wd-first-name">Tony</span>{" "}
-          <span className="wd-last-name">Hawk</span></td>
-      <td className="wd-login-id">07858312</td>
-      <td className="wd-section">S102</td>
-      <td className="wd-role">STUDENT</td>
-      <td className="wd-last-activity">2021-10-21</td>
-      <td className="wd-total-activity">1:33:12</td></tr>
-    </tbody>
-   </Table>
-  </div> );}
+  return (
+    <div id="wd-people-table" className="container-fluid p-3">
+      <h3 className="mb-3">People ({courseEnrollments.length})</h3>
+      {courseEnrollments.length === 0 ? (
+        <div className="text-muted">No people enrolled in this course.</div>
+      ) : (
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th style={{ width: 60 }}></th>
+                <th>User</th>
+              </tr>
+            </thead>
+            <tbody>
+              {courseEnrollments.map((enr) => (
+                <tr key={enr._id}>
+                  <td>
+                    <FaUserCircle className="me-2 fs-3 text-secondary" />
+                  </td>
+                  <td className="text-nowrap">{enr.user}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}

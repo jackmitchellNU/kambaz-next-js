@@ -10,7 +10,7 @@ export default function KambazNavigation() {
   const pathname = usePathname();
   const links = [
     { label: "Dashboard", path: "/Dashboard", icon: AiOutlineDashboard },
-    { label: "Courses",   path: "/Dashboard",   icon: LiaBookSolid },
+    { label: "Courses",   path: "/Courses",   icon: LiaBookSolid },
     { label: "Calendar",  path: "/Calendar",  icon: IoCalendarOutline },
     { label: "Inbox",     path: "/Inbox",     icon: FaInbox },
     { label: "Labs",      path: "/Labs",      icon: LiaCogSolid },
@@ -20,7 +20,7 @@ export default function KambazNavigation() {
          className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2">
       <ListGroupItem id="wd-neu-link" target="_blank" href="https://www.northeastern.edu/"
         action className="bg-black border-0 text-center">
-        <img src="/images/NEU.png" width="75px" /></ListGroupItem>
+        <img src="/images/NEU.jpg" width="75px" /></ListGroupItem>
       <ListGroupItem as={Link} href="/Account"
         className={`text-center border-0 bg-black
             ${pathname.includes("Account") ? "bg-white text-danger" : "bg-black text-white"}`}>
