@@ -44,7 +44,7 @@ export default function Modules() {
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
           .filter((module) => module.course === cid)
-          .map((module: any) => (
+          .map((module: Module) => (
             <ListGroupItem key={module._id} className="wd-module p-0 mb-5 fs-5 border-gray">
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <BsGripVertical className="me-2 fs-3" />
@@ -72,7 +72,7 @@ export default function Modules() {
               {
                 module.lessons && (
                   <ListGroup className="wd-lessons rounded-0">
-                    {module.lessons.map((lesson: { _id: Key | null | undefined; name: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) => (
+                    {module.lessons.map((lesson: Lesson) => (
                       <ListGroupItem key={lesson._id} className="wd-lesson p-3 ps-1">
                         <BsGripVertical className="me-2 fs-3" /> {lesson.name} <LessonControlButtons />
                       </ListGroupItem>

@@ -3,21 +3,39 @@ import { useState } from "react";
 import Link from "next/link";
 import * as db from "../Database";
 import { Row, Col, Card, CardImg, CardBody, CardTitle, CardText, Button, FormControl } from "react-bootstrap";
-import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCourse, deleteCourse, updateCourse} from "../Courses/reducer";
 import { RootState } from "../store";
+
+interface Course {
+  _id: string;
+  name: string;
+  number: string;
+  startDate: string;
+  endDate: string;
+  department: string;
+  credits: number;
+  description: string;
+  image?: string;
+}
+
+interface Enrollment {
+  _id: string;
+  user: string;
+  course: string;
+}
+
 export default function Dashboard() {
   const { courses } = useSelector((state: RootState) => state.coursesReducer);
   const dispatch = useDispatch();
-  const [course, setCourse] = useState<any>({
-
+  const [course, setCourse] = useState<Course>({
     _id: "0", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15",
+    department: "New Department", credits: 3,
     image: "/images/reactjs.jpg", description: "New Description"
   });
   const { currentUser } = useSelector((state: RootState) => state.accountReducer);
-  const { users: enrollments } = db;
+  const { enrollments } = db;
   
 
   return (
@@ -42,8 +60,8 @@ export default function Dashboard() {
         <Row xs={1} md={5} className="g-4">
           {courses.filter((course) =>
       enrollments.some(
-        (enrollment: any) =>
-          currentUser && enrollment.user === (currentUser as any)._id &&
+        (enrollment: Enrollment) =>
+          currentUser && enrollment.user === (currentUser as { _id: string })._id &&
           enrollment.course === course._id
          ))
 .map((course) => (

@@ -5,10 +5,16 @@ import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 import { RootState } from "../../store";
 import { FaAlignJustify } from "react-icons/fa6";
+
+interface Course {
+  _id: string;
+  name: string;
+}
+
 export default function CoursesLayout({ children }: { children: ReactNode }) {
  const { cid } = useParams();
  const { courses } = useSelector((state: RootState) => state.coursesReducer);
- const course = courses.find((course: any) => course._id === cid);
+ const course = courses.find((course: Course) => course._id === cid);
  return (
    <div id="wd-courses">
      <h2>

@@ -4,6 +4,12 @@ import { useState } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+
+interface Todo {
+  id: number | string;
+  title: string;
+}
+
 export default function ArrayStateVariable() {
   const { todos } = useSelector((state: RootState) => state.todosReducer);
  const [array, setArray] = useState([1, 2, 3, 4, 5]);
@@ -17,7 +23,7 @@ const deleteElement = (index: number) => {
   <div id="wd-array-state-variables">
    <h2>Array State Variable</h2>
          <ListGroup>
-        {todos.map((todo: any) => (
+        {todos.map((todo: Todo) => (
           <ListGroupItem key={todo.id}>
             {todo.title}
           </ListGroupItem>

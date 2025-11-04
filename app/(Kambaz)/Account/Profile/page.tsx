@@ -5,21 +5,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUser } from "../reducer";
 import { RootState } from "../../store";
 import { Button, FormControl } from "react-bootstrap";
+
+interface User {
+  _id: string;
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  dob: string;
+  email: string;
+  role: string;
+}
+
 export default function Profile() {
- const [profile, setProfile] = useState<any>({});
+ const [profile, setProfile] = useState<User | null>(null);
  const dispatch = useDispatch();
  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
- const fetchProfile = () => {
-   if (!currentUser) return redirect("/Account/Signin");
-   setProfile(currentUser);
- };
  const signout = () => {
    dispatch(setCurrentUser(null));
    redirect("/Account/Signin");
  };
  useEffect(() => {
-   fetchProfile();
- }, []);
+   if (!currentUser) {
+     redirect("/Account/Signin");
+     return;
+   }
+   setProfile(currentUser as User);
+ }, [currentUser]);
  return (
    <div className="wd-profile-screen">
      <h3>Profile</h3>
