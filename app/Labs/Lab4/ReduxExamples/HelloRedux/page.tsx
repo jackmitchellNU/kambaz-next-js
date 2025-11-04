@@ -1,15 +1,7 @@
 "use client";
 
-import { useSelector } from "react-redux";
-
-export const dynamic = "force-dynamic";
+import { redirect } from "next/navigation";
 
 export default function HelloRedux() {
-  const { message } = useSelector((state: { helloReducer: { message: string } }) => state.helloReducer);
-  return (
-    <div id="wd-hello-redux">
-      <h3>Hello Redux</h3>
-      <h4>{message}</h4> <hr />
-    </div>
-  );
+  redirect("/Labs/Lab4");
 }

@@ -10,10 +10,10 @@ import PassingDataOnEvent from "./PassingDataOnEvent";
 import PassingFunctions from "./PassingFunctions";
 import store from "./store";
 import { Provider } from "react-redux";
-import TodoList from "./ReduxExamples/todos/TodoList";
-import CounterRedux from "./ReduxExamples/CounterRedux/page";
-import HelloRedux from "./ReduxExamples/HelloRedux/page";
-import AddRedux from "./ReduxExamples/AddRedux/page";
+import TodoListComponent from "./ReduxExamples/TodoListComponent";
+import CounterReduxComponent from "./ReduxExamples/CounterReduxComponent";
+import HelloReduxComponent from "./ReduxExamples/HelloReduxComponent";
+import AddReduxComponent from "./ReduxExamples/AddReduxComponent";
 export default function Lab4() {
   function sayHello() {
     alert("Hello");
@@ -30,10 +30,10 @@ export default function Lab4() {
       <ObjectStateVariable />
       <ParentStateComponent />
       <ReduxExamples />
-      <AddRedux />
-      <CounterRedux />
-      <HelloRedux />
-      <TodoList />
+      <AddReduxComponent />
+      <CounterReduxComponent />
+      <HelloReduxComponent />
+      <TodoListComponent />
     </div>
     </Provider>
 );}
