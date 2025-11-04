@@ -16,6 +16,8 @@ export default function Dashboard() {
     startDate: "2023-09-10", endDate: "2023-12-15",
     image: "/images/reactjs.jpg", description: "New Description"
   });
+  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+  const { users: enrollments } = db;
   
 
   return (
@@ -38,7 +40,13 @@ export default function Dashboard() {
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {courses.map((course) => (
+          {courses.filter((course) =>
+      enrollments.some(
+        (enrollment: any) =>
+          currentUser && enrollment.user === (currentUser as any)._id &&
+          enrollment.course === course._id
+         ))
+.map((course) => (
             <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px" }}>
               <Card>
                 <Link href={`/Courses/${course._id}/Home`}
@@ -52,7 +60,7 @@ export default function Dashboard() {
                     <Button variant="primary"> Go </Button>
                     <button onClick={(event) => {
                       event.preventDefault();
-                      deleteCourse(course._id);
+                      dispatch(deleteCourse(course._id));
                     }} className="btn btn-danger float-end"
                       id="wd-delete-course-click">
                       Delete
@@ -60,7 +68,6 @@ export default function Dashboard() {
                     <button id="wd-edit-course-click"
                       onClick={(event) => {
                         event.preventDefault();
-                        dispatch(deleteCourse(course._id));
                         setCourse(course);
                       }}
                       className="btn btn-warning me-2 float-end" >
