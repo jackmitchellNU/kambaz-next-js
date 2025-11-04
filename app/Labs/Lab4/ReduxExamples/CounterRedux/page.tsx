@@ -3,7 +3,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "./CounterReducer";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function CounterRedux() {
   const { count } = useSelector((state: { counterReducer: { count: number } }) => state.counterReducer);
