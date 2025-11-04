@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
@@ -7,17 +8,18 @@ import { BsGripVertical } from "react-icons/bs";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
-import * as db from "../../../Database";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
-type Assignment = {
+interface Assignment {
   _id: string;
   title: string;
   course: string;
-};
+}
 
 export default function Assignments() {
   const { cid } = useParams<{ cid: string }>();
-  const assignments = db.assignments as Assignment[];
+  const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
 
   return (
     <div>
@@ -39,12 +41,12 @@ export default function Assignments() {
             </div>
           </div>
           <ListGroup className="wd-assignments rounded-0">
-            {assignments.filter((a) => a.course === cid).length === 0 && (
+            {assignments.filter((a: Assignment) => a.course === cid).length === 0 && (
               <ListGroupItem className="p-3 text-muted">No assignments yet.</ListGroupItem>
             )}
             {assignments
-              .filter((assignment) => assignment.course === cid)
-              .map((assignment) => (
+              .filter((assignment: Assignment) => assignment.course === cid)
+              .map((assignment: Assignment) => (
                 <ListGroupItem key={assignment._id} className="wd-assignment p-3 ps-1">
                   <div className="d-flex align-items-start">
                     <BsGripVertical className="me-2 fs-3" />
@@ -56,7 +58,7 @@ export default function Assignments() {
                         {assignment.title}
                       </Link>
                     </div>
-                    <AssignmentControlButtons />
+                    <AssignmentControlButtons assignmentId={assignment._id} />
                   </div>
                 </ListGroupItem>
               ))}

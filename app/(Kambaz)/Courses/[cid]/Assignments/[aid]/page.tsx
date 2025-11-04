@@ -1,3 +1,7 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import {
   FormControl,
   FormSelect,
@@ -7,13 +11,57 @@ import {
   Col,
   Form,
 } from "react-bootstrap";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addAssignment } from "../../../Assignments/reducer";
 
-export default async function AssignmentEditor({
-  params,
-}: {
-  params: Promise<{ cid: string; aid: string }>;
-}) {
-  const { aid } = await params;
+interface Assignment {
+  title: string;
+  description: string;
+  points: string;
+  assignmentGroup: string;
+  displayGrade: string;
+  submissionType: string;
+  assignTo: string;
+  dueDate: string;
+  availableFrom: string;
+  availableUntil: string;
+}
+
+export default function AssignmentEditor() {
+  const { cid, aid } = useParams<{ cid: string; aid: string }>();
+  const dispatch = useDispatch();
+
+  const isNew = aid === "new";
+
+  const [assignment, setAssignment] = useState<Assignment>({
+    title: isNew ? "" : aid,
+    description: "The assignment is available online",
+    points: "100",
+    assignmentGroup: "Assignments",
+    displayGrade: "Percentage",
+    submissionType: "Online",
+    assignTo: "Everyone",
+    dueDate: "2024-05-13T23:59",
+    availableFrom: "2024-05-06T12:00",
+    availableUntil: "",
+  });
+
+  const handleSave = () => {
+    dispatch(addAssignment({
+      name: assignment.title,
+      title: assignment.title,
+      description: assignment.description,
+      points: parseInt(assignment.points),
+      course: cid,
+      dueDate: assignment.dueDate,
+      availableFrom: assignment.availableFrom,
+      availableUntil: assignment.availableUntil,
+    }));
+  };
+
+  const assignmentsUrl = `/Courses/${cid}/Assignments`;
+
   return (
     <div id="wd-assignments-editor" className="container-fluid p-4">
       <Form>
@@ -21,14 +69,24 @@ export default async function AssignmentEditor({
           <label htmlFor="wd-name" className="form-label">
             Assignment Name
           </label>
-          <FormControl id="wd-name" defaultValue={aid} className="mb-3" />
+          <FormControl
+            id="wd-name"
+            value={assignment.title}
+            onChange={(e) =>
+              setAssignment({ ...assignment, title: e.target.value })
+            }
+            className="mb-3"
+          />
         </div>
 
         <div className="mb-3">
           <FormControl
             as="textarea"
             id="wd-description"
-            defaultValue="The assignment is available online"
+            value={assignment.description}
+            onChange={(e) =>
+              setAssignment({ ...assignment, description: e.target.value })
+            }
             className="mb-3"
           />
         </div>
@@ -40,7 +98,13 @@ export default async function AssignmentEditor({
             </label>
           </Col>
           <Col md={10}>
-            <FormControl id="wd-points" defaultValue="100" />
+            <FormControl
+              id="wd-points"
+              value={assignment.points}
+              onChange={(e) =>
+                setAssignment({ ...assignment, points: e.target.value })
+              }
+            />
           </Col>
         </Row>
 
@@ -51,7 +115,16 @@ export default async function AssignmentEditor({
             </label>
           </Col>
           <Col md={10}>
-            <FormSelect id="wd-assignment-group" defaultValue="Assignments">
+            <FormSelect
+              id="wd-assignment-group"
+              value={assignment.assignmentGroup}
+              onChange={(e) =>
+                setAssignment({
+                  ...assignment,
+                  assignmentGroup: e.target.value,
+                })
+              }
+            >
               <option value="Assignments">Assignments</option>
               <option value="Quizzes">Quizzes</option>
               <option value="Exams">Exams</option>
@@ -67,7 +140,16 @@ export default async function AssignmentEditor({
             </label>
           </Col>
           <Col md={10}>
-            <FormSelect id="wd-display-grade" defaultValue="Percentage">
+            <FormSelect
+              id="wd-display-grade"
+              value={assignment.displayGrade}
+              onChange={(e) =>
+                setAssignment({
+                  ...assignment,
+                  displayGrade: e.target.value,
+                })
+              }
+            >
               <option value="Percentage">Percentage</option>
               <option value="Points">Points</option>
               <option value="Letter Grade">Letter Grade</option>
@@ -82,7 +164,16 @@ export default async function AssignmentEditor({
             </label>
           </Col>
           <Col md={10}>
-            <FormSelect id="wd-submission-type" defaultValue="Online">
+            <FormSelect
+              id="wd-submission-type"
+              value={assignment.submissionType}
+              onChange={(e) =>
+                setAssignment({
+                  ...assignment,
+                  submissionType: e.target.value,
+                })
+              }
+            >
               <option value="Online">Online</option>
               <option value="Paper">Paper</option>
               <option value="External Tool">External Tool</option>
@@ -134,7 +225,13 @@ export default async function AssignmentEditor({
                 <label htmlFor="wd-assign-to" className="form-label">
                   Assign to
                 </label>
-                <FormControl id="wd-assign-to" defaultValue="Everyone" />
+                <FormControl
+                  id="wd-assign-to"
+                  value={assignment.assignTo}
+                  onChange={(e) =>
+                    setAssignment({ ...assignment, assignTo: e.target.value })
+                  }
+                />
               </div>
 
               <Row className="mb-3">
@@ -145,7 +242,13 @@ export default async function AssignmentEditor({
                   <FormControl
                     id="wd-due-date"
                     type="datetime-local"
-                    defaultValue="2024-05-13T23:59"
+                    value={assignment.dueDate}
+                    onChange={(e) =>
+                      setAssignment({
+                        ...assignment,
+                        dueDate: e.target.value,
+                      })
+                    }
                   />
                 </Col>
                 <Col md={4}>
@@ -155,14 +258,30 @@ export default async function AssignmentEditor({
                   <FormControl
                     id="wd-available-from"
                     type="datetime-local"
-                    defaultValue="2024-05-06T12:00"
+                    value={assignment.availableFrom}
+                    onChange={(e) =>
+                      setAssignment({
+                        ...assignment,
+                        availableFrom: e.target.value,
+                      })
+                    }
                   />
                 </Col>
                 <Col md={4}>
                   <label htmlFor="wd-available-until" className="form-label">
                     Until
                   </label>
-                  <FormControl id="wd-available-until" type="datetime-local" />
+                  <FormControl
+                    id="wd-available-until"
+                    type="datetime-local"
+                    value={assignment.availableUntil}
+                    onChange={(e) =>
+                      setAssignment({
+                        ...assignment,
+                        availableUntil: e.target.value,
+                      })
+                    }
+                  />
                 </Col>
               </Row>
             </div>
@@ -172,10 +291,22 @@ export default async function AssignmentEditor({
         <hr />
 
         <div className="d-flex justify-content-end">
-          <Button variant="secondary" className="me-2">
-            Cancel
+          <Link href={assignmentsUrl}>
+            <Button
+              variant="secondary"
+              className="me-2"
+              id="wd-cancel"
+            >
+              Cancel
+            </Button>
+          </Link>
+          <Button
+            variant="danger"
+            onClick={handleSave}
+            id="wd-save-assignment"
+          >
+            Save
           </Button>
-          <Button variant="danger">Save</Button>
         </div>
       </Form>
     </div>
