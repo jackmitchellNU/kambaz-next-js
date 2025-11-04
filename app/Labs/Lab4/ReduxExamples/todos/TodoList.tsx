@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { ListGroup } from "react-bootstrap";
 
+export const dynamic = 'force-dynamic';
+
 interface Todo {
   id: number | string;
   title: string;

@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { add } from "./addReducer";
 import { FormControl, Button } from "react-bootstrap";
+
+export const dynamic = 'force-dynamic';
+
 export default function AddRedux() {
   const [a, setA] = useState(12);
   const [b, setB] = useState(23);
