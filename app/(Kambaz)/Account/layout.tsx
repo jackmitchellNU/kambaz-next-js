@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import AccountNavigation from "./Navigation/page";
+
 export default function AccountLayout({ children }: Readonly<{ children: ReactNode }>) {
  return (
    <div id="wd-kambaz">
