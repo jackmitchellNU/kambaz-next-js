@@ -4,8 +4,8 @@ import { redirect } from "next/dist/client/components/navigation";
 import { setCurrentUser } from "../reducer";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import * as db from "../../Database";
 import { FormControl, Button } from "react-bootstrap";
+import { signin as clientSignin } from "../client";
 
 interface User {
   _id: string;
@@ -26,12 +26,8 @@ interface Credentials {
 export default function Signin() {
  const [credentials, setCredentials] = useState<Credentials>({ username: "", password: "" });
  const dispatch = useDispatch();
- const signin = () => {
-   const user = db.users.find(
-     (u: User) =>
-       u.username === credentials.username &&
-       u.password === credentials.password
-   );
+ const signin = async () => {
+   const user = await clientSignin(credentials);
    if (!user) return;
    dispatch(setCurrentUser(user));
    redirect("/Dashboard");

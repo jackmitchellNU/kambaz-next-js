@@ -1,4 +1,11 @@
+"use client";
+
 import EnvironmentVariables from "./EnvironmentVariables";
+import QueryParameters from "./QueryParameters";
+import WorkingWithArrays from "./WorkingWithArrays";
+import WorkingWithArraysAsynchronously from "./WorkingWithArraysAsynchronously";
+import WorkingWithObjects from "./WorkingWithObjects";
+import WorkingWithObjectsAsynchronously from "./WorkingWithObjectsAysnchronously";
 const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 export default function Lab5() {
   return (
@@ -9,6 +16,11 @@ export default function Lab5() {
           Welcome
         </a>
       </div><hr />
+      <QueryParameters />
       <EnvironmentVariables />
+      <WorkingWithObjects />
+      <WorkingWithArrays />
+      <WorkingWithObjectsAsynchronously />
+      <WorkingWithArraysAsynchronously />
     </div>
 );}
