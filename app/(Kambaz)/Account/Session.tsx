@@ -10,7 +10,11 @@ export default function Session({ children }: { children: any }) {
       const currentUser = await client.profile();
       dispatch(setCurrentUser(currentUser));
     } catch (err: any) {
-      console.error(err);
+      // Ignore expected errors: 401 (not authenticated) and network errors in dev/deployment.
+      // These are normal for anonymous visitors or misconfigured environments.
+      if (err.code !== "ERR_NETWORK" && !(err.response && err.response.status === 401)) {
+        console.error("Failed to fetch profile:", err.message);
+      }
     }
     setPending(false);
   };
