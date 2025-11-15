@@ -3,8 +3,8 @@ import React from "react";
 
 const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 export default function QueryParameters() {
-    const [a, setA] = React.useState("24");
-    const [b, setB] = React.useState("3");
+    const [a, setA] = React.useState("34");
+    const [b, setB] = React.useState("23");
 return (
 <div id="wd-query-parameters">
   <h3>Query Parameters</h3>
