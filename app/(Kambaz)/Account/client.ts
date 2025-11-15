@@ -7,8 +7,14 @@ export const signin = async (credentials: any) => {
   return response.data;
 };
 export const profile = async () => {
-  const response = await axiosWithCredentials.post(`${USERS_API}/profile`);
-  return response.data;
+  if (!HTTP_SERVER) return null;
+  try {
+    const response = await axiosWithCredentials.get(`${USERS_API}/profile`);
+    return response.data;
+  } catch (err: any) {
+    if (err.response && err.response.status === 401) return null;
+    throw err;
+  }
 };
 export const signup = async (user: any) => {
   const response = await axiosWithCredentials.post(`${USERS_API}/signup`, user);
