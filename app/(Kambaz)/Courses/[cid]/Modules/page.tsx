@@ -40,8 +40,12 @@ export default function Modules() {
   const dispatch = useDispatch();
   const fetchModules = async () => {
     if (!cid) return;
-    const modules = await client.findModulesForCourse(cid as string);
-    dispatch(setModules(modules));
+    try {
+      const modules = await client.findModulesForCourse(cid as string);
+      dispatch(setModules(modules));
+    } catch (error) {
+      console.error("Failed to fetch modules:", error);
+    }
   };
   const onCreateModuleForCourse = async () => {
     if (!cid) return;
