@@ -1,11 +1,40 @@
 "use client"
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import * as client from "../../../client";
 
+type User = { _id: string; firstName?: string; lastName?: string; username?: string };
 
-type Enrollment = { _id: string; user: string; course: string };
+export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { users?: any[]; fetchUsers?: () => void; }) {
+  const { cid } = useParams<{ cid: string }>();
+  const [users, setUsers] = useState(initialUsers);
 
-export default function PeopleTable({ users = [], fetchUsers }: { users?: any[]; fetchUsers: () => void; }) {
+  useEffect(() => {
+    // If called from People page (cid exists and no initial users), fetch enrolled users
+    if (cid && (!initialUsers || initialUsers.length === 0)) {
+      const fetchEnrolledUsers = async () => {
+        try {
+          const enrolledUsers = await client.findUsersForCourse(cid as string);
+          setUsers(enrolledUsers);
+        } catch (error) {
+          console.error("Failed to fetch users:", error);
+        }
+      };
+      fetchEnrolledUsers();
+    } else if (initialUsers && initialUsers.length > 0) {
+      // If called from Users page, use the passed users
+      setUsers(initialUsers);
+    }
+  }, [cid, initialUsers]);
+
+  const displayName = (user: User) => {
+    if (user.firstName || user.lastName) {
+      return `${user.firstName || ""} ${user.lastName || ""}`.trim();
+    }
+    return user.username || "Unknown User";
+  };
+
   return (
     <div id="wd-people-table" className="container-fluid p-3">
       <h3 className="mb-3">People ({users.length})</h3>
@@ -26,7 +55,7 @@ export default function PeopleTable({ users = [], fetchUsers }: { users?: any[];
                   <td>
                     <FaUserCircle className="me-2 fs-3 text-secondary" />
                   </td>
-                  <td className="text-nowrap">{user}</td>
+                  <td className="text-nowrap">{displayName(user)}</td>
                 </tr>
               ))}
             </tbody>

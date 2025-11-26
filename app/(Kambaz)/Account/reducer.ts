@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+
+type User = {
+  _id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role?: string;
+  [key: string]: any;
+};
+
 const initialState = {
-  currentUser: null,
+  currentUser: null as User | null,
 };
 const accountSlice = createSlice({
   name: "account",
