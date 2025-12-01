@@ -11,7 +11,6 @@ export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { 
   const [users, setUsers] = useState(initialUsers);
 
   useEffect(() => {
-    // If called from People page (cid exists and no initial users), fetch enrolled users
     if (cid && (!initialUsers || initialUsers.length === 0)) {
       const fetchEnrolledUsers = async () => {
         try {
@@ -23,7 +22,6 @@ export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { 
       };
       fetchEnrolledUsers();
     } else if (initialUsers && initialUsers.length > 0) {
-      // If called from Users page, use the passed users
       setUsers(initialUsers);
     }
   }, [cid, initialUsers]);
