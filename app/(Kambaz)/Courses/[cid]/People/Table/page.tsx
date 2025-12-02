@@ -5,7 +5,6 @@ import { FaUserCircle, FaPlus, FaTrash } from "react-icons/fa";
 import { Button, Modal, Form } from "react-bootstrap";
 import * as client from "../../../client";
 import PeopleDetails from "../Details";
-import Link from "next/link";
 
 type User = { _id: string; firstName?: string; lastName?: string; username?: string };
 
@@ -129,9 +128,11 @@ export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { 
 
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3 className="mb-0">People ({users.length})</h3>
-        <Button variant="success" onClick={openEnrollModal}>
-          <FaPlus className="me-2" /> Enroll User
-        </Button>
+        {cid && (
+          <Button variant="success" onClick={openEnrollModal}>
+            <FaPlus className="me-2" /> Enroll User
+          </Button>
+        )}
       </div>
       {users.length === 0 ? (
         <div className="text-muted">No people enrolled in this course.</div>
@@ -142,7 +143,7 @@ export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { 
               <tr>
                 <th style={{ width: 60 }}></th>
                 <th>User</th>
-                <th style={{ width: 100 }}>Actions</th>
+                {cid && <th style={{ width: 100 }}>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -168,16 +169,18 @@ export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { 
                   >
                     {displayName(user)}
                   </td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleUnenrollUser(user._id)}
-                      title="Unenroll"
-                    >
-                      <FaTrash />
-                    </Button>
-                  </td>
+                  {cid && (
+                    <td>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => handleUnenrollUser(user._id)}
+                        title="Unenroll"
+                      >
+                        <FaTrash />
+                      </Button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
