@@ -63,10 +63,15 @@ export default function Dashboard() {
 
   const fetchCourses = async () => {
     try {
-      const myCourses = await findMyCourses();
-      dispatch(setCourses(myCourses));
+      if (currentUser) {
+        const myCourses = await findMyCourses();
+        dispatch(setCourses(myCourses));
+      } else {
+        dispatch(setCourses([]));
+      }
     } catch (error) {
       console.error(error);
+      dispatch(setCourses([]));
     }
   };
   const onUpdateCourse = async () => {
