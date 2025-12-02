@@ -108,7 +108,7 @@ export default function PeopleTable({ users: initialUsers = [], fetchUsers }: { 
               value={selectedUserId}
               onChange={(e) => setSelectedUserId(e.target.value)}
             >
-              <option value="">-- Select a user --</option>
+              <option value="">Select a user</option>
               {getUnenrolledUsers().map((user) => (
                 <option key={user._id} value={user._id}>
                   {displayName(user)}
