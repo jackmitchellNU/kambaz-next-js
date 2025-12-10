@@ -1,3 +1,4 @@
+"use client";
 import { todo } from "node:test";
 import { FormControl } from "react-bootstrap";
 import { setTodo } from "../Lab4/ReduxExamples/todos/todosReducer";
